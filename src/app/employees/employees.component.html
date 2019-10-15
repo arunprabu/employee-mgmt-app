@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <section class="col-sm-12 main-section ">
+            <div class="jumbotron">
+                <h1 class="display-4">Employee Manager App!</h1>
+                <a class="btn btn-primary btn-lg" routerLink="/employees/new" role="button">Create New Employee</a>
+            </div>
+        </section>
+    </div>
+
+    <div class="row">
+
+        <div class="card col-sm-3" *ngFor="let employee of employeeList">
+            <div class="card-body">
+                <h5 class="card-title">{{employee.name}}</h5>
+                <p class="card-text">Website: {{employee.website}}</p>
+                <a routerLink="/employees/{{employee.id}}" class="link">View Details</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

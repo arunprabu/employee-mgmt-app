@@ -1,0 +1,99 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="databinding-tab" data-toggle="tab" href="#databinding" role="tab"
+            aria-controls="databinding" aria-selected="true">Databinding</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="directives-tab" data-toggle="tab" href="#directives" role="tab"
+            aria-controls="directives" aria-selected="false">Directives</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="databinding" role="tabpanel" aria-labelledby="databinding-tab">
+        <h1>Data Binding</h1>
+        <h2>String Interpolation</h2>
+        <p>App name is {{ appName }}</p>
+        <p>Age is {{ age }}</p>
+        <p>Primary Skill: {{ skillsList[0] }} </p>
+        <p>Accessing Age from method: {{ getAge() }}</p>
+        <p title="{{appName}}">Mouse over to see the tooltip</p>
+        <input type="text" value="{{appName}}">
+        <hr>
+
+        <h2>Property Binding</h2>
+        <p [title]="appName">Mouseover to see the tooltip -- prop binding</p>
+        <input type="text" [value]="appName">
+
+
+        <div class="redText">
+            This will work
+        </div>
+
+        <!-- Class Binding -->
+        <div [ngClass]="{ 'redText': !isLoggedIn }">
+            Will appear in red if not logged in
+        </div>
+
+        <div [ngClass]="{ 'redText': !isLoggedIn, 'greenText': isLoggedIn }">
+            Will appear in green if loggedin and in red if not loggedin
+        </div>
+
+        <button type="button" 
+        [ngClass]="{ 'btn btn-success': isLoggedIn, 'btn btn-danger': !isLoggedIn }">Testing
+            Button</button>
+
+
+        <!-- Todo: style binding in angular [ngStyle] -->
+
+        <hr>
+        <h2>Event Binding</h2>
+        <button type="button" 
+        class="btn btn-primary" 
+        onclick="btnClickHandler(event)">Click me -- will not work -- check
+            console</button>
+
+        <br><br>
+        <!-- Event Binding -->
+        <button type="button" 
+    class="btn btn-primary" 
+        (click)="btnClickHandler($event)">Click me</button>
+
+        <hr>
+        <h2>Two Way Binding</h2>
+        <p>{{ devName }}</p>
+
+        <input type="text" value="{{devName}}">
+        <br>
+        <input type="text" [value]="devName">
+        <br>
+        <input type="text" [(ngModel)]="devName">
+
+    </div>
+    <div class="tab-pane fade" id="directives" role="tabpanel" aria-labelledby="directives-tab">
+        <h1>Directives</h1>
+        <h2>Attribute Directives </h2>
+        <p>Examples: routerLink, ngClass, ngStyle, routerLinkActive </p>
+
+        <hr>
+        <h2>Structural Directives</h2>
+        <p>*ngIf</p>
+        <div class="alert alert-success" *ngIf="isAuth; else notAuthBox">
+            Thanks for logging in
+        </div>
+
+        <ng-template #notAuthBox> <!-- template reference -->
+            <div class="alert alert-danger">
+                You are not authenticated!
+            </div>
+        </ng-template>
+
+        <p>*ngFor</p>
+        <ul>
+            <li *ngFor="let skill of skillsList">{{skill}}</li>
+        </ul>
+        <!-- todo: find index in above *ngFor-->
+        <!-- todo: ngSwitch -->
+        
+
+    </div>
+</div>
